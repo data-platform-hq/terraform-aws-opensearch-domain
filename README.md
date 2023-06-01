@@ -1,0 +1,1 @@
+# terraform-aws-opensearch-domain
