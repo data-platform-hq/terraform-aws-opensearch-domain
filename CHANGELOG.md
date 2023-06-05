@@ -1,3 +1,11 @@
+## [1.0.1](https://github.com/data-platform-hq/terraform-aws-opensearch-domain/compare/v1.0.0...v1.0.1) (2023-06-05)
+
+
+### Bug Fixes
+
+* added validation for advanced_security_options configuration ([c733c20](https://github.com/data-platform-hq/terraform-aws-opensearch-domain/commit/c733c204a13afbb2f4990351dabc9fc65cb04808))
+* formatting ([f15055a](https://github.com/data-platform-hq/terraform-aws-opensearch-domain/commit/f15055a6e952caf7a405e1849fd115b5edcccb4a))
+
 # 1.0.0 (2023-06-01)
 
 
