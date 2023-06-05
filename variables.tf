@@ -36,34 +36,22 @@ variable "advanced_security_options_enabled" {
   default     = false
 }
 
-variable "advanced_security_options_anonymous_auth_enabled" {
-  description = "Whether Anonymous auth is enabled"
-  type        = bool
-  default     = false
-}
+variable "advanced_security_options" {
+  description = "Advanced security configuration"
+  type = object({
+    anonymous_auth_enabled         = optional(bool, false)
+    internal_user_database_enabled = optional(bool, false)
+    master_user_arn                = optional(string, null)
+    master_user_name               = optional(string, null)
+    master_user_password           = optional(string, null)
+  })
+  default = {}
 
-variable "advanced_security_options_internal_user_database_enabled" {
-  description = "Whether the internal user database is enabled"
-  type        = bool
-  default     = false
-}
-
-variable "advanced_security_options_master_user_arn" {
-  description = "ARN for the main user. If not specified, then it defaults to using the IAM user that is making the request"
-  type        = string
-  default     = ""
-}
-
-variable "advanced_security_options_master_user_name" {
-  description = "Main user's username, which is stored in the Amazon OpenSearch Service domain's internal database. Applicable if advanced_security_options_internal_user_database_enabled set to true"
-  type        = string
-  default     = ""
-}
-
-variable "advanced_security_options_master_user_password" {
-  description = "Main user's password, which is stored in the Amazon OpenSearch Service domain's internal database. Applicable if advanced_security_options_internal_user_database_enabled set to true"
-  type        = string
-  default     = ""
+  validation {
+    condition = !(var.advanced_security_options.master_user_arn != null && var.advanced_security_options.master_user_name != null) && !(
+      var.advanced_security_options.master_user_arn != null && var.advanced_security_options.master_user_password != null)
+    error_message = "You should specify either master_user_arn or master_user_name and master_user_password"
+  }
 }
 
 variable "auto_tune_options_enabled" {
