@@ -49,7 +49,7 @@ variable "advanced_security_options" {
 
   validation {
     condition = !(var.advanced_security_options.master_user_arn != null && var.advanced_security_options.master_user_name != null) && !(
-      var.advanced_security_options.master_user_arn != null && var.advanced_security_options.master_user_password != null)
+    var.advanced_security_options.master_user_arn != null && var.advanced_security_options.master_user_password != null)
     error_message = "You should specify either master_user_arn or master_user_name and master_user_password"
   }
 }
